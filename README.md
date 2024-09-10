@@ -1,15 +1,7 @@
-# nanostores-search-param
+# nanostores-search-params
 
-To install dependencies:
+Read and write search params via a nanostore.
 
-```bash
-bun install
-```
+A port of sveltekit-search-params. This uses browser APIs directly so that it's usable in, say, an Astro project.
 
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.1.26. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+## Why
