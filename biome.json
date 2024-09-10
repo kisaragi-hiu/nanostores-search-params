@@ -25,10 +25,5 @@
       "indentStyle": "space",
       "enabled": true
     }
-  },
-  "javascript": {
-    "formatter": {
-      "semicolons": "asNeeded"
-    }
   }
 }

@@ -20,7 +20,7 @@ dev:
 	bun build src/index.ts --target=node --outfile=dist/index.js --watch
 
 format:
-	bunx biome format --write src/
+	bunx biome format --write .
 
 lint:
 	bunx biome lint src/
