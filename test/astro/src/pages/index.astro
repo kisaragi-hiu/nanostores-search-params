@@ -1,10 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import CaseSvelte from "./_CaseSvelte.svelte";
 ---
 
 <script>
-  import { queryParam } from "../../../../src/index";
-  const $q = queryParam("q");
+  import { q as $q } from "../store";
 
   const b1 = document.getElementById("b1");
   const b2 = document.getElementById("b2");
@@ -16,28 +16,39 @@ import Layout from "../layouts/Layout.astro";
     $q.set(i1.value);
   });
   $q.subscribe((newValue) => {
-    if (newValue !== undefined) i1.value = newValue;
+    if (newValue === undefined) {
+      i1.value = "";
+    } else {
+      i1.value = newValue;
+    }
   });
 </script>
 
 <Layout title="nanostores-search-params playground">
   <main>
     <h1><span class="text-gradient">nanostores</span>-search-params</h1>
-    <p class="opening">
-      To get started, open the directory <code>src/pages</code> in your project.<br
-      />
-    </p>
+    <p class="opening">Playground intro notice.</p>
+    <h2>Astro Template script tag</h2>
     <div>
-      <input
-        id="i1"
-        type="search"
-        value=""
-        placeholder="This value should be synced up with the q param"
-      />
+      <div class="inputHeader">
+        This value should be synced up with the q param
+      </div>
+      <input id="i1" type="search" value="" placeholder="Text..." />
       <div>
         <button id="b1">Set `q` to "hello"</button>
         <button id="b2">Reset `q`</button>
       </div>
     </div>
+    <h2>Svelte (client:only)</h2>
+    <CaseSvelte client:only="svelte" />
+    <h2>Svelte (client:load)</h2>
+    <p>
+      This currently fails because (a) the search-params store needs <code
+        >location</code
+      > to load and (b) sharing the same store requires that we actually import from
+      the same file (and we have to share the store to share the listeners).
+    </p>
+
+    <p>Or we could have some sort of singleton in the main file.</p>
   </main>
 </Layout>

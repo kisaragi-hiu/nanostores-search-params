@@ -80,9 +80,6 @@ export function queryParam(
   };
   const origSet = store.set;
   store.set = (newValue) => {
-    if (typeof newValue !== "string") {
-      throw new Error("This store only supports strings for now");
-    }
     if (newValue === undefined) {
       params.delete(name);
     } else {

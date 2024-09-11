@@ -12,6 +12,7 @@
 html {
   font-family: system-ui, sans-serif;
   background: #13151a;
+  font-size: 20px;
 }
 code {
   font-family:
@@ -31,7 +32,6 @@ main {
   width: 800px;
   max-width: calc(100% - 2rem);
   color: white;
-  font-size: 20px;
   line-height: 1.6;
 }
 .astro-a {
@@ -44,7 +44,7 @@ main {
   z-index: -1;
 }
 h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1;
   text-align: center;
@@ -83,6 +83,10 @@ main input {
   width: 100%;
   padding: 0.25rem;
   margin-bottom: 1rem;
+}
+.inputHeader {
+  font-size: 0.75rem;
+  font-weight: bold;
 }
 main button {
   font-size: 1rem;
