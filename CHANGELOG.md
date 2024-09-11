@@ -1,0 +1,14 @@
+# Changelog
+
+## 0.0.2 (not yet released)
+
+- Make it possible to load the store server side for SSR ([ca3c804](https://github.com/kisaragi-hiu/nanostores-search-params/commit/ca3c8049916812e8b7926e59f8fbe4d507ea0f6e))
+- Some light refactor to not call getActualParam twice ([30cca45](https://github.com/kisaragi-hiu/nanostores-search-params/commit/30cca45ae059c57f0126bebbf73ed08d53148853))
+
+## v0.0.1 ([1f6ac18](https://github.com/kisaragi-hiu/nanostores-search-params/commit/1f6ac18975ef36a9a0ed8792a8cc96c8cd4d0a1d))
+
+First release of a somewhat working prototype.
+
+<!-- Local Variables: -->
+<!-- eval: (load (expand-file-name "./cmds.el")) -->
+<!-- End: -->
