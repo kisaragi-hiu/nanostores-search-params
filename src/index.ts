@@ -1,42 +1,89 @@
 import { atom } from "nanostores";
+import type { WritableAtom } from "nanostores";
 
 const identity = <T>(x: T) => x;
 
-function encodePassthru(value: unknown): string | undefined {
-  if (typeof value === "undefined") return undefined;
-  if (typeof value === "string") return value;
-  throw new Error("Please specify how to convert the value to a string");
-}
-function decodePassthru(rawValue: string | null): string | undefined {
-  if (typeof rawValue === "string") return rawValue;
-  return undefined;
+type Decoder<T> = (rawValue: string | null) => T | undefined;
+type Encoder<T> = (value: T) => string | undefined;
+
+function getParam<T>(
+  params: URLSearchParams,
+  name: string,
+  decoder?: Decoder<T> | undefined,
+) {
+  if (typeof decoder === "undefined") {
+    return params.get(name);
+  }
+  return decoder(params.get(name));
 }
 
+export function queryParam<T extends number>(
+  name: string,
+  opts?: {
+    type?: "number" | "integer";
+    defaultValue?: number;
+    url?: URL;
+    pushHistory?: boolean;
+  },
+): WritableAtom<number>;
 export function queryParam<T>(
   name: string,
   opts?: {
     /**
-     * Function to encode a JS value into string.
-     * If this returns `undefined`, the param is removed.
+     * Specify the JS type of the value.
+     * If unspecified or "string", use the raw string as from the URL (except if a
+     * param doesn't exist, that is treated as `undefined` instead of `null`).
+     * If "number", convert to/from a number.
      */
-    encode?: (value: unknown) => string | undefined;
-    decode?: (rawValue: string | null) => T | undefined;
+    // This has to be runtime because I want to use this to specify different
+    // kinds of builtin encoder/decoders.
+    type?:
+      | "string"
+      | "number"
+      | "integer"
+      | undefined
+      | {
+          /**
+           * Function to encode a JS value into string in the param.
+           * If this returns `undefined`, the param is removed.
+           */
+          encode: Encoder<T>;
+          /**
+           * Function to decode a param value into a JS value.
+           */
+          decode: Decoder<T>;
+        };
     defaultValue?: T;
     url?: URL;
     pushHistory?: boolean;
   },
-) {
-  const encode = opts?.encode ?? encodePassthru;
-  const decode = opts?.decode ?? decodePassthru;
+): WritableAtom<T> {
+  const pushHistory = opts?.pushHistory ?? true;
+  const type = opts?.type;
+  let encode: Encoder<T> | undefined = undefined;
+  let decode: Decoder<T> | undefined = undefined;
+  if (typeof type === "object") {
+    encode = type.encode;
+    decode = type.decode;
+  } else if (type === "number") {
+    encode = (value: T) => value.toString();
+    decode = (rawValue: string | null) => {
+      if (rawValue) {
+        return Number.parseFloat(rawValue);
+      }
+      return undefined;
+    };
+  }
   const url = opts?.url ?? new URL(location.href);
   const params = url.searchParams;
-  const store = atom(params.get(name) ?? opts?.defaultValue);
+  // The store should hold the decoded JS value
+  const store = atom(getParam(params, name, decode) ?? opts?.defaultValue);
   console.log(store);
   const origGet = store.get;
   store.get = () => {
     // this is mainly just to run the off() handler when appropriate
     origGet();
-    return decode(params.get(name));
+    return getParam(params, name, decode);
   };
   const origSet = store.set;
   store.set = (newValue) => {
@@ -51,7 +98,7 @@ export function queryParam<T>(
       }
     }
 
-    if (opts?.pushHistory) {
+    if (pushHistory) {
       history.pushState({}, "", url);
     } else {
       history.replaceState({}, "", url);
