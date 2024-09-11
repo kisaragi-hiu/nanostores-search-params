@@ -4,30 +4,34 @@
   const q = queryParam("q", {
     url: $page.url,
   });
-  const p = queryParam("p", {
+  const state = queryParam("state", {
     url: $page.url,
-    defaultValue: 1,
+    defaultValue: "abc",
   });
-  const num = queryParam("p", {
-    url: $page.url,
-    type: "number",
-    defaultValue: 1.5,
-  });
-  const num = queryParam("p", {
-    url: $page.url,
-    type: "integer",
-    defaultValue: 1,
-  });
-  const num = queryParam("p", {
-    url: $page.url,
-    type: "json",
-    defaultValue: { abc: "def" },
-  });
+  // const p = queryParam("p", {
+  //   url: $page.url,
+  //   defaultValue: 1,
+  // });
+  // const num = queryParam("p", {
+  //   url: $page.url,
+  //   type: "number",
+  //   defaultValue: 1.5,
+  // });
+  // const num = queryParam("p", {
+  //   url: $page.url,
+  //   type: "integer",
+  //   defaultValue: 1,
+  // });
+  // const num = queryParam("p", {
+  //   url: $page.url,
+  //   type: "json",
+  //   defaultValue: { abc: "def" },
+  // });
 </script>
 
 <h1>nanostores-search-params playground</h1>
-<p>Current q: {$q}</p>
-<p>Current p: {$p}</p>
+<p>Current `q`: {$q}</p>
+<p>Current `state`: {$state}</p>
 <div>
   <p>This should remove the `q` param while updating users of the store.</p>
   <button

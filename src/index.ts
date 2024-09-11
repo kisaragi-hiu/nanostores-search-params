@@ -1,15 +1,15 @@
 import { atom } from "nanostores";
 import type { WritableAtom } from "nanostores";
 
-const identity = <T>(x: T) => x;
+// const identity = <T>(x: T) => x;
 
 type Decoder<T> = (rawValue: string) => T | undefined;
-type Encoder<T> = (value: T) => string | undefined;
+// type Encoder<T> = (value: T) => string | undefined;
 
 /**
  * Get the `name` param from `params`, taking care of nulls.
  */
-function getParam<T>(params: URLSearchParams, name: string): string;
+function getParam<T>(params: URLSearchParams, name: string): string | undefined;
 function getParam<T>(
   params: URLSearchParams,
   name: string,
@@ -36,7 +36,7 @@ export function queryParam(
     url?: URL;
     pushHistory?: boolean;
   },
-): WritableAtom<string> {
+): WritableAtom<string | undefined> {
   const pushHistory = opts?.pushHistory ?? true;
   const url = opts?.url ?? new URL(location.href);
   const params = url.searchParams;
