@@ -1,7 +1,5 @@
 <script lang="ts">
-  import { queryParam } from "../../../../src/index";
-  // import { q } from "../store";
-  const q = queryParam("q");
+  import { q } from "../store";
 </script>
 
 <div>
