@@ -1,25 +1,27 @@
-* nanostores-search-params
+# nanostores-search-params
 
 Read and write search params via a nanostore.
 
-A port of [[https://github.com/paoloricciuti/sveltekit-search-params][sveltekit-search-params]]. This uses browser APIs directly so that it's usable in, say, an Astro project.
+A port of [sveltekit-search-params](https://github.com/paoloricciuti/sveltekit-search-params). This uses browser APIs directly so that it will be usable in, say, an Astro project.
 
-** Why
+## Why
 
-- Why not use location.url.searchParams.{get,set} ::
+- **Why not use location.url.searchParams.{get,set}**
 
   a nanostore allows for other stuff that depend on the value of the store to automatically update when a `set` happens.
 
-- Why not write / use a Svelte store for this ::
+- **Why not write / use a Svelte store for this**
 
-  I guess making it a nanostore allows for use in other frameworks as well.
+  Making it a nanostore allows for use in other frameworks as well.
 
-** Status
+## Status
 
 - String in/out kind of works
+- Not really usable yet
+- No docs
 - Publishing todos: publish playground pages as demos, tests not yet automated, no Changelog, build process not done yet
 
-** TODOs
+## TODOs
 
 - encode decode edge cases
   - should encode return null? undefined? should it receive them?
