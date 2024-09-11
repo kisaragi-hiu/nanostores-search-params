@@ -1,7 +1,6 @@
 dist: dist/index.js
 dist/index.js: $(wildcard src/*.ts) bun.lockb
-	mkdir -p $(@D)
-	bun build src/index.ts --target=node --outfile=dist/index.js --minify
+	bun build.ts
 
 bun.lockb: package.json
 	bun install
@@ -10,24 +9,23 @@ bun.lockb: package.json
 .PHONY: all build clean dev format lint release test
 
 all: dist
-
 build: dist
 
 clean:
 	git clean -Xfd
 
 dev:
-	bun build src/index.ts --target=node --outfile=dist/index.js --watch
+	bun build.ts --watch
 
 format:
-	bunx biome format --write .
+	npx biome format --write .
 
 lint:
-	bunx biome lint src/
-	bunx tsc
+	npx biome lint src/
+	npx tsc
 
 release:
-	bunx bumpp
+	npx bumpp
 
 test:
 	bun test
