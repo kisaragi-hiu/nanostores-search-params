@@ -14,6 +14,11 @@ A port of [[https://github.com/paoloricciuti/sveltekit-search-params][sveltekit-
 
   I guess making it a nanostore allows for use in other frameworks as well.
 
+** Status
+
+- String in/out kind of works
+- Publishing todos: publish playground pages as demos, tests not yet automated, no Changelog, build process not done yet
+
 ** TODOs
 
 - encode decode edge cases
