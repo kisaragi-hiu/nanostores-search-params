@@ -1,7 +1,24 @@
 {
   "name": "nanostores-search-params",
+  "author": "kisaragi-hiu",
+  "license": "MIT",
+  "version": "0.0.1",
+  "description": "Easily read/write search params with a store",
+  "keywords": ["nanostores", "search", "params"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kisaragi-hiu/nanostores-search-params.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kisaragi-hiu/nanostores-search-params/issues"
+  },
+  "homepage": "https://github.com/kisaragi-hiu/nanostores-search-params#readme",
+  "directories": {
+    "test": "test"
+  },
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "files": ["dist/index.js"],
   "types": "dist/index.d.ts",
   "type": "module",
   "devDependencies": {
