@@ -1,7 +1,9 @@
+import { build } from "esbuild";
 import UnpluginIsolatedDecl from "unplugin-isolated-decl/esbuild";
 
-await Bun.build({
-  entrypoints: ["./src/index.ts"],
+await build({
+  entryPoints: ["./src/index.ts"],
+  bundle: true,
   outdir: "./dist",
-  plugins: [UnpluginIsolatedDecl],
+  plugins: [UnpluginIsolatedDecl()],
 });
