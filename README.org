@@ -2,7 +2,7 @@
 
 Read and write search params via a nanostore.
 
-A port of sveltekit-search-params. This uses browser APIs directly so that it's usable in, say, an Astro project.
+A port of [[https://github.com/paoloricciuti/sveltekit-search-params][sveltekit-search-params]]. This uses browser APIs directly so that it's usable in, say, an Astro project.
 
 ** Why
 
@@ -10,8 +10,18 @@ A port of sveltekit-search-params. This uses browser APIs directly so that it's 
 
   a nanostore allows for other stuff that depend on the value of the store to automatically update when a `set` happens.
 
+- Why not write / use a Svelte store for this ::
+
+  I guess making it a nanostore allows for use in other frameworks as well.
+
 ** TODOs
 
 - encode decode edge cases
   - should encode return null? undefined? should it receive them?
   - should decode return null? undefined? should it receive them?
+- features
+  - [ ] debounceHistory
+  - [X] pushHistory
+  - [ ] sort
+  - [X] showDefaults
+  - [ ] equalityFn (is this applicable?)

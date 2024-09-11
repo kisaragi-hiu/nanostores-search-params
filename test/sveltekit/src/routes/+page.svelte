@@ -4,9 +4,15 @@
   const q = queryParam("q", {
     url: $page.url,
   });
-  const state = queryParam("state", {
+  const foo = queryParam("foo", {
     url: $page.url,
     defaultValue: "abc",
+    showDefaults: false,
+  });
+  const bar = queryParam("bar", {
+    url: $page.url,
+    defaultValue: "abc",
+    showDefaults: true,
   });
   // const p = queryParam("p", {
   //   url: $page.url,
@@ -31,7 +37,8 @@
 
 <h1>nanostores-search-params playground</h1>
 <p>Current `q`: {$q}</p>
-<p>Current `state`: {$state}</p>
+<p>Current `foo`: {$foo}.<br />`foo` is configured as showDefaults: false.</p>
+<p>Current `bar`: {$bar}.<br />`bar` is configured as showDefaults: true.</p>
 <div>
   <p>This should remove the `q` param while updating users of the store.</p>
   <button
