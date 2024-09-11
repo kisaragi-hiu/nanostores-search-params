@@ -53,13 +53,19 @@ export function queryParam(
   },
 ): WritableAtom<string | undefined> {
   const pushHistory = opts?.pushHistory ?? true;
-  const url = opts?.url ?? new URL(location.href);
+  const url =
+    opts?.url ?? typeof location !== "undefined"
+      ? new URL(location?.href)
+      : new URL("https://example.com");
   const params = url.searchParams;
   // The store should hold the decoded JS value
   const actualParam = getActualParam(params, name);
   const store = atom(actualParam ?? opts?.defaultValue);
 
   onMount(store, () => {
+    // This only writes defaults to the URL once on the client, so things that
+    // depend on correct values on client side would work, but not for
+    // server side things
     if (actualParam === undefined && opts?.showDefaults) {
       // This is to fire off our before advice and also notify subscribers (if
       // any)

@@ -13,13 +13,6 @@ import CaseAstro from "./_CaseAstro.astro";
     <h2>Svelte (client:only)</h2>
     <CaseSvelte client:only="svelte" />
     <h2>Svelte (client:load)</h2>
-    <p>
-      This currently fails because (a) the search-params store needs <code
-        >location</code
-      > to load and (b) sharing the same store requires that we actually import from
-      the same file (and we have to share the store to share the listeners).
-    </p>
-
-    <p>Or we could have some sort of singleton in the main file.</p>
+    <CaseSvelte client:load />
   </main>
 </Layout>
