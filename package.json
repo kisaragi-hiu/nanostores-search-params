@@ -1,5 +1,5 @@
 {
-  "name": "nanostores-search-param",
+  "name": "nanostores-search-params",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
