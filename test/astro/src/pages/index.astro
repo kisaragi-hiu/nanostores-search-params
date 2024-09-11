@@ -1,0 +1,43 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<script>
+  import { queryParam } from "../../../../src/index";
+  const $q = queryParam("q");
+
+  const b1 = document.getElementById("b1");
+  const b2 = document.getElementById("b2");
+  const i1 = document.getElementById("i1") as HTMLInputElement;
+  if (!(b1 && b2 && i1)) throw new Error("Can't find an element");
+  b1.addEventListener("click", () => $q.set("hello"));
+  b2.addEventListener("click", () => $q.set(undefined));
+  i1.addEventListener("input", () => {
+    $q.set(i1.value);
+  });
+  $q.subscribe((newValue) => {
+    if (newValue !== undefined) i1.value = newValue;
+  });
+</script>
+
+<Layout title="nanostores-search-params playground">
+  <main>
+    <h1><span class="text-gradient">nanostores</span>-search-params</h1>
+    <p class="opening">
+      To get started, open the directory <code>src/pages</code> in your project.<br
+      />
+    </p>
+    <div>
+      <input
+        id="i1"
+        type="search"
+        value=""
+        placeholder="This value should be synced up with the q param"
+      />
+      <div>
+        <button id="b1">Set `q` to "hello"</button>
+        <button id="b2">Reset `q`</button>
+      </div>
+    </div>
+  </main>
+</Layout>
