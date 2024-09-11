@@ -56,16 +56,14 @@ export function queryParam(
   const url = opts?.url ?? new URL(location.href);
   const params = url.searchParams;
   // The store should hold the decoded JS value
-  const store = atom(getActualParam(params, name) ?? opts?.defaultValue);
+  const actualParam = getActualParam(params, name);
+  const store = atom(actualParam ?? opts?.defaultValue);
 
   onMount(store, () => {
-    if (
-      getActualParam(params, name) === undefined &&
-      opts?.defaultValue !== undefined
-    ) {
-      if (opts?.showDefaults) {
-        store.set(opts?.defaultValue);
-      }
+    if (actualParam === undefined && opts?.showDefaults) {
+      // This is to fire off our before advice and also notify subscribers (if
+      // any)
+      store.set(opts?.defaultValue);
     }
     // return () => {
     //   //destroy
