@@ -25,3 +25,5 @@ A port of [[https://github.com/paoloricciuti/sveltekit-search-params][sveltekit-
   - [ ] sort
   - [X] showDefaults
   - [ ] equalityFn (is this applicable?)
+  - [ ] encoder / decoder (do this first)
+  - [ ] convenience types (string, number, integer, json)
