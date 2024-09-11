@@ -1,5 +1,7 @@
 # nanostores-search-params
 
+https://npmjs.com/package/nanostores-search-params
+
 Read and write search params via a nanostore.
 
 A port of [sveltekit-search-params](https://github.com/paoloricciuti/sveltekit-search-params). This uses browser APIs directly so that it will be usable in, say, an Astro project.
