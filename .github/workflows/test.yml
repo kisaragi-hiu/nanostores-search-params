@@ -1,0 +1,18 @@
+name: test build
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      # only test build for now
+      # we'll run tests once we have automated them
+      - name: test build
+        run: |
+          bun install
+          make build
