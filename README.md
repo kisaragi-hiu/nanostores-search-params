@@ -25,6 +25,13 @@ A port of [sveltekit-search-params](https://github.com/paoloricciuti/sveltekit-s
 
 ## TODOs
 
+- actually set up tests
+- set up demo site(s)
+  - design
+  - docs / link to docs
+  - maybe use as automatic tests as well
+- docs
+- same URL and key should get same store
 - encode decode edge cases
   - should encode return null? undefined? should it receive them?
   - should decode return null? undefined? should it receive them?
