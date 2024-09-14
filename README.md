@@ -25,6 +25,7 @@ A port of [sveltekit-search-params](https://github.com/paoloricciuti/sveltekit-s
 
 ## TODOs
 
+- Start using this in Kemdict and another-kdel10n-stats
 - actually set up tests
 - set up demo site(s)
   - design
