@@ -3,6 +3,21 @@ import type { WritableAtom } from "nanostores";
 
 // const identity = <T>(x: T) => x;
 
+/**
+ * Make sure `maybeUrl` is a URL.
+ */
+function processUrl(maybeUrl: URL | string | undefined): URL {
+  if (typeof maybeUrl === "undefined") {
+    return typeof location !== "undefined"
+      ? new URL(location?.href)
+      : new URL("https://example.com");
+  } else if (typeof maybeUrl === "string") {
+    return new URL(maybeUrl);
+  } else {
+    return maybeUrl;
+  }
+}
+
 type Decoder<T> = (rawValue: string) => T | undefined;
 // type Encoder<T> = (value: T) => string | undefined;
 
@@ -38,12 +53,12 @@ export function queryParam(
   opts?: {
     defaultValue?: string;
     /**
-     * A URL object to read the state from, if `location` isn't available when
-     * getting the value.
+     * A URL object or string to read the state from instead of `location.href`.
+     * This is useful for server side rendering.
      * The state is written to the DOM separately via `history`, not through
      * this object.
      */
-    url?: URL;
+    url?: URL | string;
     /**
      * Whether to push new history entries allowing for back/forward to navigate
      * through previous values. Defaults to true.
@@ -53,11 +68,7 @@ export function queryParam(
   },
 ): WritableAtom<string | undefined> {
   const pushHistory = opts?.pushHistory ?? true;
-  const url =
-    opts?.url ??
-    (typeof location !== "undefined"
-      ? new URL(location?.href)
-      : new URL("https://example.com"));
+  const url = processUrl(opts?.url);
   const params = url.searchParams;
   // The store should hold the decoded JS value
   const actualParam = getActualParam(params, name);
