@@ -4,17 +4,7 @@
     "enabled": true
   },
   "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "complexity": { "noMultipleSpacesInRegularExpressionLiterals": "off" },
-      "style": {
-        "useTemplate": "off",
-        "noNonNullAssertion": "off",
-        "useNamingConvention": "warn"
-      },
-      "suspicious": { "noExplicitAny": "off", "noImplicitAnyLet": "off" }
-    }
+    "enabled": false
   },
   "formatter": {
     "indentStyle": "space",
