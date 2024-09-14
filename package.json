@@ -2,7 +2,7 @@
   "name": "nanostores-search-params",
   "author": "kisaragi-hiu",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Easily read/write search params with a store",
   "keywords": ["nanostores", "reactive", "search params", "search", "params"],
   "repository": {
