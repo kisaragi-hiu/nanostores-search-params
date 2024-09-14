@@ -20,6 +20,9 @@ dev:
 format:
 	npx biome format --write .
 
+format.playground:
+	npx prettier -w playground
+
 lint:
 	npx biome lint src/
 	npx tsc
