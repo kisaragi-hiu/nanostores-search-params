@@ -28,10 +28,10 @@
   <title>SvelteKit playground | nanostores-search-params</title>
 </svelte:head>
 
-<div class="prose">
-  <h1 class="text-2xl sm:text-3xl font-extrabold">SvelteKit playground</h1>
+<main class="prose">
+  <h1>SvelteKit playground</h1>
   <div class="mb-8">
-    <h2 class="text-xl mt-6 mb-4 font-semibold">Navigating</h2>
+    <h2>Navigating</h2>
     <p>
       These should update users of the store as well as the URL bar without
       doing a page reload.
@@ -46,7 +46,7 @@
     </div>
   </div>
   <div class="mb-8">
-    <h2 class="text-xl mt-6 mb-4 font-semibold">Writing to the store</h2>
+    <h2>Writing to the store</h2>
     <pre>Current `q`: {JSON.stringify($q)}</pre>
     <div>
       <p>
@@ -127,4 +127,4 @@
       >
     </div>
   </div>
-</div>
+</main>

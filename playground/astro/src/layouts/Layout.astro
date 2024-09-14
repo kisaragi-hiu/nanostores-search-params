@@ -1,11 +1,13 @@
 ---
-import "../index.css";
+import "../../../shared/src.css";
+import MainLayout from "../../../shared/MainLayout.svelte";
 
 interface Props {
   title: string;
+  page: string;
 }
 
-const { title } = Astro.props;
+const { title, page } = Astro.props;
 ---
 
 <!doctype html>
@@ -18,7 +20,9 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
-    <slot />
+  <body class="dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-3">
+      <MainLayout page={page}><slot /></MainLayout>
+    </div>
   </body>
 </html>

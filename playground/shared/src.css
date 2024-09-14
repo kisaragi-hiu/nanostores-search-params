@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: 19, 216, 160;
+  --accent-light: 194, 240, 227;
+  --accent-dark: 7, 70, 52;
+  --accent-gradient: linear-gradient(
+    45deg,
+    rgb(var(--accent)),
+    rgb(var(--accent-light)) 30%,
+    white 60%
+  );
+}
+
+@layer base {
+  main {
+    line-height: 1.6;
+  }
+  html {
+    @apply text-black bg-white dark:bg-black dark:text-white;
+    font-size: 20px;
+  }
+  button,
+  a,
+  input {
+    &:focus-visible {
+      @apply outline outline-2 outline-yellow-500;
+    }
+  }
+}
+
+@layer components {
+  .notice {
+    margin-bottom: 2rem;
+    border: 1px solid rgba(var(--accent-light), 25%);
+    background: linear-gradient(
+      rgba(var(--accent-dark), 66%),
+      rgba(var(--accent-dark), 33%)
+    );
+    padding: 1.5rem;
+    border-radius: 8px;
+    code {
+      font-size: 0.8em;
+      font-weight: bold;
+      background: rgba(var(--accent-light), 12%);
+      color: rgb(var(--accent-light));
+      border-radius: 4px;
+      padding: 0.3em 0.4em;
+    }
+    strong {
+      color: rgb(var(--accent-light));
+    }
+  }
+  .nav {
+    ul {
+      a {
+        @apply block border-l pl-4 -ml-px py-1;
+      }
+    }
+  }
+
+  .btn {
+    font-size: 1rem;
+    border: 1px solid rgba(255, 255, 255, 25%);
+    color: white;
+    background: linear-gradient(rgba(50, 50, 50, 66%), rgba(50, 50, 50, 33%));
+    padding: 0.5rem;
+    border-radius: 6px;
+    &:hover {
+      background: linear-gradient(
+        rgba(var(--accent-dark), 66%),
+        rgba(var(--accent-dark), 33%)
+      );
+    }
+    &:active {
+      background: linear-gradient(
+        rgba(var(--accent-dark), 50%),
+        rgba(var(--accent-dark), 25%)
+      );
+    }
+    /* @apply inline-block; */
+    /* @apply rounded-md; */
+    /* @apply py-1 px-2 bg-stone-800; */
+    /* @apply border dark:border-stone-700 font-bold; */
+    /* &:focus-visible { */
+    /*   @apply outline outline-2 outline-yellow-500; */
+    /* } */
+    /* &:hover { */
+    /*   @apply bg-stone-700 border-stone-400; */
+    /* } */
+    /* &:active, */
+    /* &:hover:active { */
+    /*   @apply bg-stone-600; */
+    /* } */
+  }
+}
+
+.inputHeader {
+  @apply text-xs font-bold;
+}
+
+.prose {
+  h1 {
+    @apply text-2xl sm:text-3xl font-extrabold;
+  }
+  h2 {
+    @apply text-xl mt-6 font-semibold;
+  }
+  input {
+    @apply w-full p-2 my-2;
+    @apply dark:bg-stone-800 dark:text-white;
+  }
+  a,
+  button {
+    @apply transition;
+  }
+  p {
+    @apply my-2;
+  }
+  a {
+    @apply inline-block;
+    @apply underline;
+    @apply border border-black font-bold;
+    &:hover {
+      @apply text-blue-400;
+    }
+  }
+  button {
+    @apply btn;
+  }
+
+  pre {
+    @apply bg-stone-900 rounded-lg border border-stone-600;
+    @apply p-4 mt-6 mb-2;
+  }
+}

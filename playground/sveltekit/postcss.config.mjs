@@ -1,8 +1,1 @@
-// Vite seems to want ts-node to be able to load .ts configs.
-// That's worse than just using .mjs.
-export default {
-  plugins: {
-    "tailwindcss/nesting": {},
-    tailwindcss: {},
-  },
-};
+/home/kisaragi-hiu/git/nanostores-search-params/playground/shared/postcss.config.mjs
