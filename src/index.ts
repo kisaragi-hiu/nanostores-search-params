@@ -48,7 +48,16 @@ function getActualParam<T>(
   return decoder(value);
 }
 
+/**
+ * Used to make sure multiple calls to `queryParam` would receive the same
+ * store and can thus share the state.
+ */
+const storesCache: Map<string, WritableAtom<string | undefined>> = new Map();
+
 export function queryParam(
+  /**
+   * Return a store that reads and writes this URL parameter.
+   */
   name: string,
   opts?: {
     defaultValue?: string;
@@ -69,10 +78,17 @@ export function queryParam(
 ): WritableAtom<string | undefined> {
   const pushHistory = opts?.pushHistory ?? true;
   const url = processUrl(opts?.url);
+  const urlString = url.toString();
   const params = url.searchParams;
   // The store should hold the decoded JS value
   const actualParam = getActualParam(params, name);
-  const store = atom(actualParam ?? opts?.defaultValue);
+
+  const cachedStore = storesCache.get(urlString);
+  if (typeof cachedStore !== "undefined") {
+    return cachedStore;
+  }
+
+  const store = atom<string | undefined>();
 
   onMount(store, () => {
     // This only writes defaults to the URL once on the client, so things that
@@ -114,5 +130,9 @@ export function queryParam(
     // Put the decoded JS value in the store
     return origSet(newValue);
   };
+  // Try to only use the cache in contexts where we can set stuff
+  if (typeof history !== "undefined") {
+    storesCache.set(urlString, store);
+  }
   return store;
 }
