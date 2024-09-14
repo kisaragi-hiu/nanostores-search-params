@@ -2,6 +2,7 @@
 // That's worse than just using .mjs.
 export default {
   plugins: {
+    "tailwindcss/nesting": {},
     tailwindcss: {},
   },
 };
