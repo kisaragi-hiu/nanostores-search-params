@@ -54,9 +54,10 @@ export function queryParam(
 ): WritableAtom<string | undefined> {
   const pushHistory = opts?.pushHistory ?? true;
   const url =
-    opts?.url ?? typeof location !== "undefined"
+    opts?.url ??
+    (typeof location !== "undefined"
       ? new URL(location?.href)
-      : new URL("https://example.com");
+      : new URL("https://example.com"));
   const params = url.searchParams;
   // The store should hold the decoded JS value
   const actualParam = getActualParam(params, name);
